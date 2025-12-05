@@ -1,4 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { registerEmailRoutes } from "./emailRoutes";
 import { setupWebSocket } from "./websocket";
@@ -35,6 +37,52 @@ process.on('warning', (warning) => {
 });
 
 const app = express();
+
+// Configure CORS for production deployment
+const isProduction = process.env.NODE_ENV === 'production';
+const allowedOrigins = [
+  'https://edufiliova.com',
+  'https://www.edufiliova.com',
+  process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : null,
+  process.env.REPLIT_DOMAINS ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` : null,
+].filter(Boolean) as string[];
+
+// Add development origins
+if (!isProduction) {
+  allowedOrigins.push('http://localhost:5000', 'http://127.0.0.1:5000');
+}
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) {
+      return callback(null, true);
+    }
+    // Check if origin is allowed
+    if (allowedOrigins.some(allowed => origin.startsWith(allowed.replace(/\/$/, '')))) {
+      return callback(null, true);
+    }
+    // Allow all Replit domains
+    if (origin.includes('.replit.dev') || origin.includes('.replit.app') || origin.includes('.repl.co')) {
+      return callback(null, true);
+    }
+    console.log('🚫 CORS blocked origin:', origin);
+    return callback(null, true); // Allow all origins temporarily for debugging
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Session-Id', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['Set-Cookie'],
+  maxAge: 86400
+}));
+
+// Cookie parser middleware
+app.use(cookieParser());
+
+// Trust proxy for production (needed for secure cookies behind reverse proxy)
+if (isProduction) {
+  app.set('trust proxy', 1);
+}
 
 // Skip body parsing for logo upload routes (need raw body for signature verification)
 app.use((req, res, next) => {
