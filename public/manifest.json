@@ -1,0 +1,16 @@
+{
+  "name": "EduFiliova - Global Education Platform",
+  "short_name": "EduFiliova",
+  "description": "Personalized learning platform for students worldwide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#42fa76",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
