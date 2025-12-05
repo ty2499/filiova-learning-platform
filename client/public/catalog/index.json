@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2025-11-19T05:43:31.462Z",
+  "stats": {
+    "totalCourses": 4,
+    "totalSubjects": 23,
+    "totalCategories": 11,
+    "totalCourseLessons": 0,
+    "totalSubjectLessons": 0
+  },
+  "files": {
+    "manifest": "index.json",
+    "categories": "categories.json",
+    "coursesListing": "courses-listing.json",
+    "subjectsListing": "subjects-listing.json",
+    "courses": [],
+    "subjects": []
+  },
+  "note": "Detailed course/subject content with lessons will be fetched via API when needed"
+}
