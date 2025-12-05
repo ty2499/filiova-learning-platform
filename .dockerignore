@@ -1,0 +1,68 @@
+# Dependencies (will be reinstalled in Docker)
+node_modules
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+!README.md
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Development files
+.replit
+.replit.nix
+replit.md
+
+# Logs
+*.log
+logs/
+
+# Test files
+*.test.ts
+*.spec.ts
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Build cache
+.cache
+.parcel-cache
+
+# Local environment
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Backup files
+*.backup
+*.backup_*
+*.broken
+*.broken2
+*.corrupted
+*.fixed
+*.daily_backup
+
+# Attached assets (development only)
+attached_assets/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Misc development files
+sedvC84Sb
