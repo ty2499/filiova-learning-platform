@@ -1,84 +1,118 @@
-# Dependencies (will be reinstalled in Docker)
+# Node modules (reinstalled in Docker)
 node_modules
+npm-debug.log*
 
 # Git
 .git
+.gitignore
+.gitattributes
 
-# Documentation (except README)
+# Build outputs (rebuilt in Docker)
+dist
+build
+
+# Documentation
 *.md
-!README.md
 
-# Editor directories and files
-.vscode/
-.idea/
+# Editor/IDE
+.vscode
+.idea
 *.swp
 *.swo
 *~
 
-# OS generated files
+# OS files
 .DS_Store
 Thumbs.db
+*.DS_Store
 
-# Development files
+# Replit files
 .replit
 .replit.nix
 replit.md
+.config
+.upm
+
+# Environment files
+.env
+.env.*
+!.env.example
 
 # Logs
 *.log
-logs/
+logs
 
 # Test files
 *.test.ts
 *.spec.ts
-coverage/
+__tests__
+coverage
+.nyc_output
 
-# Temporary files
-tmp/
-temp/
+# Temp files
+tmp
+temp
 *.tmp
+*.temp
 
-# Build cache
+# Cache
 .cache
 .parcel-cache
-
-# Local environment
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.tsbuildinfo
 
 # Backup files
 *.backup
 *.backup_*
-*.broken
-*.broken2
+*.broken*
 *.corrupted
 *.fixed
 *.daily_backup
 
-# Heavy asset directories (saves memory during build)
-attached_assets/
-uploads/
+# Heavy directories (not needed for build)
+attached_assets
+uploads
+scripts
 
-# Large binary files
+# Large files
 *.pdf
 *.zip
 *.tar
 *.tar.gz
 *.rar
+*.7z
+*.mp4
+*.mp3
+*.wav
+*.mov
+*.avi
 
-# Large JSON data files (not needed for build)
+# Data files not needed for build
 grade7_*.json
 *_book.json
-
-# TypeScript build info
-*.tsbuildinfo
-
-# Misc development files
-sedvC84Sb
+test-payout-data.sql
 migration-log.txt
 migration-mapping.json
-test-payout-data.sql
 hero-section-sizes.pdf
 users-list.pdf
+sedvC84Sb
+
+# Unnecessary root files
+CERTIFICATE_INFO.md
+CERTIFIER_SETUP_GUIDE.md
+CLOUDFLARE_R2_SETUP.md
+DATABASE_EGRESS_OPTIMIZATION_COMPLETE.md
+DATABASE_EGRESS_OPTIMIZATION_SUMMARY.md
+DEPLOYMENT_CHECKLIST.md
+EGRESS_OPTIMIZATION_SUMMARY.md
+IMAGE_GENERATION_GUIDE.md
+IMPLEMENTATION_SUMMARY.md
+MIGRATION_COMPLETE.md
+NEON_EGRESS_FIXES.md
+PAYMENT_FLOW_CONSISTENCY.md
+PAYMENT_GATEWAYS_SETUP.md
+SUBSCRIPTION_ACCESS_CONTROL_GUIDE.md
+WHATSAPP_BOT_SETUP_GUIDE.md
+ZERO_EGRESS_IMPLEMENTATION.md
+generate-hero-sizes-pdf.ts
+railway.json
+render.yaml
