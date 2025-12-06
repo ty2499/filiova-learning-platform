@@ -156,3 +156,85 @@ export async function getPayPalConfig(): Promise<{
 
   return { clientId, clientSecret, environment };
 }
+
+export async function getCloudflareR2Config(): Promise<{
+  accountId: string | null;
+  accessKeyId: string | null;
+  secretAccessKey: string | null;
+  bucketName: string | null;
+  publicUrl: string | null;
+}> {
+  const [accountId, accessKeyId, secretAccessKey, bucketName, publicUrl] = await Promise.all([
+    getSetting('cloudflare_account_id', 'CLOUDFLARE_ACCOUNT_ID'),
+    getSetting('cloudflare_r2_access_key_id', 'CLOUDFLARE_R2_ACCESS_KEY_ID'),
+    getSetting('cloudflare_r2_secret_access_key', 'CLOUDFLARE_R2_SECRET_ACCESS_KEY'),
+    getSetting('cloudflare_r2_bucket_name', 'CLOUDFLARE_R2_BUCKET_NAME'),
+    getSetting('cloudflare_r2_public_url', 'CLOUDFLARE_R2_PUBLIC_URL')
+  ]);
+
+  return { accountId, accessKeyId, secretAccessKey, bucketName, publicUrl };
+}
+
+export async function getSupabaseConfig(): Promise<{
+  url: string | null;
+  anonKey: string | null;
+  serviceRoleKey: string | null;
+}> {
+  const [url, anonKey, serviceRoleKey] = await Promise.all([
+    getSetting('supabase_url', 'SUPABASE_URL'),
+    getSetting('supabase_anon_key', 'SUPABASE_ANON_KEY'),
+    getSetting('supabase_service_role_key', 'SUPABASE_SERVICE_ROLE_KEY')
+  ]);
+
+  return { url, anonKey, serviceRoleKey };
+}
+
+export async function getAgoraConfig(): Promise<{
+  appId: string | null;
+  appCertificate: string | null;
+}> {
+  const [appId, appCertificate] = await Promise.all([
+    getSetting('agora_app_id', 'AGORA_APP_ID'),
+    getSetting('agora_app_certificate', 'AGORA_APP_CERTIFICATE')
+  ]);
+
+  return { appId, appCertificate };
+}
+
+export async function getCertifierConfig(): Promise<{
+  apiKey: string | null;
+  certificateGroupId: string | null;
+  diplomaGroupId: string | null;
+}> {
+  const [apiKey, certificateGroupId, diplomaGroupId] = await Promise.all([
+    getSetting('certifier_api_key', 'CERTIFIER_API_KEY'),
+    getSetting('certifier_certificate_group_id', 'CERTIFIER_CERTIFICATE_GROUP_ID'),
+    getSetting('certifier_diploma_group_id', 'CERTIFIER_DIPLOMA_GROUP_ID')
+  ]);
+
+  return { apiKey, certificateGroupId, diplomaGroupId };
+}
+
+export async function getWhatsAppConfig(): Promise<{
+  accessToken: string | null;
+  phoneNumberId: string | null;
+  businessAccountId: string | null;
+  webhookVerifyToken: string | null;
+}> {
+  const [accessToken, phoneNumberId, businessAccountId, webhookVerifyToken] = await Promise.all([
+    getSetting('whatsapp_access_token', 'WHATSAPP_ACCESS_TOKEN'),
+    getSetting('whatsapp_phone_number_id', 'WHATSAPP_PHONE_NUMBER_ID'),
+    getSetting('whatsapp_business_account_id', 'WHATSAPP_BUSINESS_ACCOUNT_ID'),
+    getSetting('whatsapp_webhook_verify_token', 'WHATSAPP_WEBHOOK_VERIFY_TOKEN')
+  ]);
+
+  return { accessToken, phoneNumberId, businessAccountId, webhookVerifyToken };
+}
+
+export async function getAnthropicKey(): Promise<string | null> {
+  return getSetting('anthropic_api_key', 'ANTHROPIC_API_KEY');
+}
+
+export async function getSessionSecret(): Promise<string | null> {
+  return getSetting('session_secret', 'SESSION_SECRET');
+}
